@@ -18,6 +18,8 @@
 
     <bean class="aop.SimpleAopBean" />
 
+        <bean class="base.SimpleBean"></bean>
+
     <aop:config expose-proxy="true">
         <aop:advisor advice-ref="simpleMethodInterceptor" pointcut="execution(* aop.SimpleAopBean.*(..))" />
     </aop:config>

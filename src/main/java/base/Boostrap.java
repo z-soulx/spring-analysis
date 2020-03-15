@@ -8,8 +8,11 @@ public class Boostrap {
 
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
-        TransactionBean bean = context.getBean(TransactionBean.class);
-        bean.process();
+        SimpleBean bean = context.getBean(SimpleBean.class);
+        bean.send();
+        context.close();
+//        TransactionBean bean = context.getBean(TransactionBean.class);
+//        bean.process();
     }
 	
 }
