@@ -14,17 +14,43 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
         http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd">
 
-<!--    <bean id="simpleMethodInterceptor" class="aop.SimpleMethodInterceptor" />-->
 
-    <bean class="base.SimpleBean">
-        <property name="student" ref="student"/>
-    </bean>
+<!--   core配置-->
+<!--    <bean class="base.SimpleBean">-->
+<!--        <property name="student" ref="student"/>-->
+<!--    </bean>-->
 <!--    <bean class="base.SimpleBeanPostProcessor"/>-->
-    <bean id="student" class="base.Student" primary="true" autowire="default" />
-<!--    <bean class="aop.SimpleAopBean" />-->
+<!--    <bean id="student" class="base.Student" primary="true" autowire="default" />-->
 <!--    <bean class="base.SimpleBeanFactoryPostProcessor" />-->
-<!--    <aop:config expose-proxy="true">-->
-<!--        <aop:advisor advice-ref="simpleMethodInterceptor" pointcut="execution(* aop.SimpleAopBean.*(..))" />-->
-<!--    </aop:config>-->
 
+<!--   Aop配置-->
+    <bean class="aop.SimpleAopBean" />
+    <bean id="simpleMethodInterceptor" class="aop.SimpleMethodInterceptor" />
+
+    <aop:config expose-proxy="true">
+        <aop:advisor advice-ref="simpleMethodInterceptor"
+                     pointcut="execution(* aop.SimpleAopBean.*(..))" />
+    </aop:config>
+
+
+
+    <!-- 这是Java原生API事务   (JDBC事务,Hibernate事务等等)https://www.jianshu.com/p/7c6d4dbbe8fc  -->
+    <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+
+        <property name="transactionManagerName" value="java:/TransactionManager" />
+
+    </bean>
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="get*" read-only="true" propagation="NOT_SUPPORTED"/>
+            <tx:method name="find*" read-only="true" propagation="NOT_SUPPORTED"/>
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <aop:pointcut expression="execution(* aop..*.*(..))" id="transaction"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="transaction"/>
+<!--        <aop:aspect ref="" />-->
+    </aop:config>
 </beans>
