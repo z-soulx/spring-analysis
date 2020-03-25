@@ -30,27 +30,14 @@
     <aop:config expose-proxy="true">
         <aop:advisor advice-ref="simpleMethodInterceptor"
                      pointcut="execution(* aop.SimpleAopBean.*(..))" />
+<!--        <aop:aspect ref="simpleMethodInterceptor"  >-->
+<!--            <aop:pointcut id="test" expression="execution(* aop.SimpleAopBean.*(..))"/>-->
+<!--            <aop:before method="before" pointcut-ref="test"/>-->
+<!--        </aop:aspect>-->
     </aop:config>
 
 
 
     <!-- 这是Java原生API事务   (JDBC事务,Hibernate事务等等)https://www.jianshu.com/p/7c6d4dbbe8fc  -->
-    <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
 
-        <property name="transactionManagerName" value="java:/TransactionManager" />
-
-    </bean>
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            <tx:method name="get*" read-only="true" propagation="NOT_SUPPORTED"/>
-            <tx:method name="find*" read-only="true" propagation="NOT_SUPPORTED"/>
-            <tx:method name="*" propagation="REQUIRED"/>
-        </tx:attributes>
-    </tx:advice>
-
-    <aop:config>
-        <aop:pointcut expression="execution(* aop..*.*(..))" id="transaction"/>
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="transaction"/>
-<!--        <aop:aspect ref="" />-->
-    </aop:config>
 </beans>
