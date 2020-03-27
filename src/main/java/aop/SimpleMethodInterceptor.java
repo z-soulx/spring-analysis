@@ -32,4 +32,8 @@ public class SimpleMethodInterceptor implements MethodBeforeAdvice, AfterReturni
     public void afterReturning(Object returnValue, Method method, Object[] args, Object target) throws Throwable {
         System.out.println("after");
     }
+
+    public void before2() throws Throwable {
+        System.out.println("before2");
+    }
 }

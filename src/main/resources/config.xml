@@ -27,17 +27,37 @@
     <bean class="aop.SimpleAopBean" />
     <bean id="simpleMethodInterceptor" class="aop.SimpleMethodInterceptor" />
 
-    <aop:config expose-proxy="true">
+<!--    <aop:config expose-proxy="true">-->
+    <aop:config >
         <aop:advisor advice-ref="simpleMethodInterceptor"
                      pointcut="execution(* aop.SimpleAopBean.*(..))" />
 <!--        <aop:aspect ref="simpleMethodInterceptor"  >-->
 <!--            <aop:pointcut id="test" expression="execution(* aop.SimpleAopBean.*(..))"/>-->
-<!--            <aop:before method="before" pointcut-ref="test"/>-->
+<!--            <aop:before method="before2" pointcut-ref="test"/>-->
 <!--        </aop:aspect>-->
     </aop:config>
 
 
-
-    <!-- 这是Java原生API事务   (JDBC事务,Hibernate事务等等)https://www.jianshu.com/p/7c6d4dbbe8fc  -->
+<!--    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+<!--        <property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
+<!--        <property name="url" value="jdbc:mysql://localhost:3306/test?characterEncoding=utf-8&amp;serverTimezone=UTC&amp;useSSL=false" />-->
+<!--        <property name="username" value="root" />-->
+<!--        <property name="password" value="adminadmin" />-->
+<!--    </bean>-->
+<!--    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+<!--        <property name="dataSource" ref="dataSource"/>-->
+<!--    </bean>-->
+<!--    <tx:advice id="txAdvice" transaction-manager="transactionManager">-->
+<!--        <tx:attributes>-->
+<!--            <tx:method name="get*" read-only="true" propagation="NOT_SUPPORTED"/>-->
+<!--            <tx:method name="find*" read-only="true" propagation="NOT_SUPPORTED"/>-->
+<!--            <tx:method name="*" propagation="REQUIRED"/>-->
+<!--        </tx:attributes>-->
+<!--    </tx:advice>-->
+<!--    <aop:config>-->
+<!--        <aop:pointcut expression="execution(* base.service..*.*(..))" id="transaction"/>-->
+<!--        <aop:advisor advice-ref="txAdvice" pointcut-ref="transaction"/>-->
+<!--&lt;!&ndash;        <aop:aspect ref="" />&ndash;&gt;-->
+<!--    </aop:config>-->
 
 </beans>
