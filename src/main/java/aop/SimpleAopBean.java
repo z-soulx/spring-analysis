@@ -9,7 +9,7 @@ public class SimpleAopBean {
 
     public void boo() {
         System.out.println("testA执行");
-        testB();
+
     }
 
     public void testB() {
