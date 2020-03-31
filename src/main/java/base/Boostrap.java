@@ -18,9 +18,9 @@ public class Boostrap {
 //        bean.send();
 
         //aop 测试
-        TransactionBean bean = context.getBean(TransactionBean.class);
-        bean.process();
-        context.close();
+//        TransactionBean bean = context.getBean(TransactionBean.class);
+//        bean.process();
+//        context.close();
 //
     }
 	

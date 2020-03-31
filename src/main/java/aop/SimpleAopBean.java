@@ -14,7 +14,7 @@ public class SimpleAopBean {
 
     public void testB() {
         System.out.println("testB执行");
-        ((SimpleAopBean) AopContext.currentProxy()).testC();
+//        ((SimpleAopBean) AopContext.currentProxy()).testC();
     }
 
     public void testC() {

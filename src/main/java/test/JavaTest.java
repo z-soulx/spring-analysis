@@ -28,6 +28,14 @@ public class JavaTest {
     }
 
     public static void main(String[] args) {
+        /**
+         * https://stackoverflow.com/questions/27013542/getdeclaredmethods-behaving-differently-in-java-7-vs-java-8
+         * 本身子类已经继承了父类的getingredient方法返回的是objec，
+         * 而子类中又定义了一个返回ArrayList的getingredient方法，
+         * 如果你调用子类的getingredient方法，它应该执行哪个方法？
+         * 所以实际上市一个类中两个重名的方法，
+         * 这样getdeclaredMethods返会两个getingredient就不奇怪了。否者定义的时候就会出错。
+         */
         for (Method method : MyList.class.getDeclaredMethods()) {
             System.out.println("name: " + method.getName() + ", return: " + method.getReturnType());
         }

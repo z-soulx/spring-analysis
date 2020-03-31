@@ -22,6 +22,7 @@
 <!--    <bean class="base.SimpleBeanPostProcessor"/>-->
 <!--    <bean id="student" class="base.Student" primary="true" autowire="default" />-->
 <!--    <bean class="base.SimpleBeanFactoryPostProcessor" />-->
+<context:annotation-config/>
 
 <!--   Aop配置-->
     <bean class="aop.SimpleAopBean" />
