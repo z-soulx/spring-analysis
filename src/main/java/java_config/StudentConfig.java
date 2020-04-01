@@ -1,10 +1,7 @@
 package java_config;
 
 import base.Student;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportAware;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.*;
 import org.springframework.core.type.AnnotationMetadata;
 
 /**
