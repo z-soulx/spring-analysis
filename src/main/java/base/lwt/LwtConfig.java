@@ -11,7 +11,7 @@ import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
  * @create: 2020-04-01 14:46
  **/
 @Configuration
-@EnableLoadTimeWeaving
-@EnableSpringConfigured
+//@EnableLoadTimeWeaving
+//@EnableSpringConfigured
 public class LwtConfig {
 }

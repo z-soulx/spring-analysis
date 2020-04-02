@@ -9,9 +9,10 @@ import org.springframework.scheduling.annotation.Async;
  */
 public class Task {
 
-//    @Async("executor")
-    public void print() {
+    @Async
+    public void print() throws InterruptedException {
         System.out.println("print执行");
+        Thread.sleep(5000);
     }
 
 }

@@ -1,6 +1,7 @@
 package base;
 
 import base.aop.AopDemo;
+import base.lwt.LwtConfig;
 import base.transaction.TransactionBean;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -13,15 +14,14 @@ public class Boostrap {
         //测 占位符替换
         System.setProperty("spring", "classpath");
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("${spring}:config.xml");
-        SimpleBeanFactoryPostProcessor simpleBeanFactoryPostProcessor = new SimpleBeanFactoryPostProcessor();
 //        simpleBeanFactoryPostProcessor.postProcessBeanFactory(null);
         //core test
-        SimpleBean bean = context.getBean(SimpleBean.class);
-        bean.send();
+//        SimpleBean bean = context.getBean(SimpleBean.class);
+//        bean.send();
 
         //aop 测试
-//        TransactionBean bean = context.getBean(TransactionBean.class);
-//        bean.process();
+        TransactionBean bean = context.getBean(TransactionBean.class);
+        bean.process();
 //        context.close();
 //
     }
