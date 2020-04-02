@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.Async;
  */
 public class Task {
 
-    @Async("executor")
+//    @Async("executor")
     public void print() {
         System.out.println("print执行");
     }

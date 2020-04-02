@@ -32,9 +32,9 @@
 <!--    开启注解(使得Autowired等注解可以使用) 如果配置了context:component-scan其实就没有必要配置annotation-config 了。-->
 <!--<context:annotation-config/>-->
 <!--    开启扫描，自动生成bean，不用在xml中配置 @Component-->
-    <context:component-scan base-package="base">
+<!--    <context:component-scan base-package="base">-->
 <!--        <context:exclude-filter type="annotation" expression="javax.annotation.Resource" />-->
-    </context:component-scan>
+<!--    </context:component-scan>-->
 
 <!--    <context:property-override location="property.properties" />-->
 <!--    <bean id="student" class="base.Student">-->
