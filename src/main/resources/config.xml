@@ -30,7 +30,7 @@
 
 <!--    Spring-context-->
 <!--    开启注解(使得Autowired等注解可以使用) 如果配置了context:component-scan其实就没有必要配置annotation-config 了。-->
-<!--<context:annotation-config/>-->
+<context:annotation-config/>
 <!--    开启扫描，自动生成bean，不用在xml中配置 @Component-->
 <!--    <context:component-scan base-package="base">-->
 <!--        <context:exclude-filter type="annotation" expression="javax.annotation.Resource" />-->
@@ -78,13 +78,20 @@
         <property name="username" value="root" />
         <property name="password" value="adminadmin" />
     </bean>
+    <bean id="dataSource2" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://192.168.7.231:3306/smjjtest?useUnicode=true&amp;characterEncoding=utf8&amp;allowMultiQueries=true" />
+        <property name="username" value="root" />
+        <property name="password" value="Sckr@2002" />
+    </bean>
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
+        <property name="dataSource" ref="dataSource2"/>
     </bean>
     <tx:annotation-driven transaction-manager="transactionManager"/>
     <bean id="nestedBean" class="base.transaction.NestedBean" />
-    <bean class="base.transaction.TransactionBean">
+    <bean id="transactionBean" class="base.transaction.TransactionBean">
         <property name="nestedBean" ref="nestedBean" />
+        <property name="transactionBean" ref="transactionBean" />
     </bean>
 <!--    <tx:advice id="txAdvice" transaction-manager="transactionManager">-->
 <!--        <tx:attributes>-->
