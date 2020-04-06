@@ -2,6 +2,10 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
                              http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+<!--        之所加上这个是因为涉及到初始化的一些顺序,如果不加-->
+<!--    会先自动读取 默认的applicationContext.xml文件-->
+
+
     <display-name>spring</display-name>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
@@ -34,10 +38,27 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:spring-servlet.xml</param-value>
         </init-param>
+        <!-- 容器类型 -->
+<!--        <init-param>-->
+<!--            <param-name>contextClass</param-name>-->
+<!--            <param-value>java.lang.Object</param-value>-->
+<!--        </init-param>-->
+<!--        <init-param>-->
+<!--            <param-name>contextInitializerClasses</param-name>-->
+<!--            <param-value>java.lang.String</param-value>-->
+<!--        </init-param>-->
     </servlet>
     <servlet-mapping>
         <servlet-name>SpringMVC</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:config.xml</param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 
 </web-app>

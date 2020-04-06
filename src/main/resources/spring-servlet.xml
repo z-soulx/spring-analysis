@@ -22,5 +22,19 @@
         <property name="prefix" value="/WEB-INF/"></property>
         <property name="suffix" value=".jsp"></property>
     </bean>
-    
+<!--    上面是以前比较土的方式,下面是新的配置视图方式-->
+<!--    <mvc:view-resolvers>-->
+<!--        <mvc:jsp view-class="org.springframework.web.servlet.view.JstlView" />-->
+<!--    </mvc:view-resolvers>-->
+
+<!--    跨域请求  或@CrossOrigin注解-->
+<!--    <mvc:cors>-->
+<!--        <mvc:mapping path="*"/>-->
+<!--    </mvc:cors>-->
+
+<!--    <mvc:annotation-driven>-->
+<!--        <mvc:message-converters register-defaults="true">-->
+<!--            <bean class="test.Converter" />-->
+<!--        </mvc:message-converters>-->
+<!--    </mvc:annotation-driven>-->
 </beans>

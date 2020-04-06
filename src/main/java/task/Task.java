@@ -12,7 +12,7 @@ public class Task {
     @Async
     public void print() throws InterruptedException {
         System.out.println("print执行");
-        Thread.sleep(5000);
+//        Thread.sleep(5000);
     }
 
 }

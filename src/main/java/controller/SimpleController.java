@@ -26,20 +26,21 @@ public class SimpleController {
 
     private Validator validator;
 
-    @InitBinder
-    public void initBinder(DataBinder dataBinder) {
+//    @InitBinder
+//    public void initBinder(DataBinder dataBinder) {
         //dataBinder.setValidator(new SimpleModelValidator());
         //dataBinder.addValidators(new SimpleModelValidator());
-    }
+//    }
 
-    @PostConstruct
-    public void initValidator() {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        this.validator = factory.getValidator();
-    }
+//    @PostConstruct
+//    public void initValidator() {
+//        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+//        this.validator = factory.getValidator();
+//    }
 
     @RequestMapping("/echo")
-    public String echo(@RequestParam("name") String name, Model model, HttpServletRequest request) throws InterruptedException {
+    @ResponseBody
+    public String echo(@RequestParam("name") int name, Model model, HttpServletRequest request) throws InterruptedException {
         model.addAttribute("echo", "hello " + name);
         return "echo";
     }
