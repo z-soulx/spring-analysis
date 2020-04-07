@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.DataBinder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import validator.SimpleModelValidator;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -26,27 +27,27 @@ public class SimpleController {
 
     private Validator validator;
 
-//    @InitBinder
-//    public void initBinder(DataBinder dataBinder) {
-        //dataBinder.setValidator(new SimpleModelValidator());
-        //dataBinder.addValidators(new SimpleModelValidator());
-//    }
+    @InitBinder
+    public void initBinder(DataBinder dataBinder) {
+        dataBinder.setValidator(new SimpleModelValidator());
+//        dataBinder.addValidators(new SimpleModelValidator());
+    }
 
-//    @PostConstruct
-//    public void initValidator() {
-//        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-//        this.validator = factory.getValidator();
-//    }
+    @PostConstruct
+    public void initValidator() {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        this.validator = factory.getValidator();
+    }
 
     @RequestMapping("/echo")
     @ResponseBody
-    public String echo(@RequestParam("name") int name, Model model, HttpServletRequest request) throws InterruptedException {
+    public String echo(@Validated @RequestParam("name") int name, Model model, HttpServletRequest request) throws InterruptedException {
         model.addAttribute("echo", "hello " + name);
         return "echo";
     }
 
     @RequestMapping(value = "/echoAgain", method = RequestMethod.POST)
-    public String echo(@RequestBody SimpleModel simpleModel, BindingResult bindingResult, Model model) {
+    public String echo(@Validated SimpleModel simpleModel, BindingResult bindingResult, Model model) {
 
         Set<ConstraintViolation<SimpleModel>> result = validator.validate(simpleModel);
         for (ConstraintViolation<SimpleModel> r : result) {
@@ -61,6 +62,15 @@ public class SimpleController {
         }
         model.addAttribute("echo", hello);
         System.out.println(simpleModel);
+        return "echo";
+    }
+    @RequestMapping(value = "/echoJson", method = RequestMethod.POST)
+    public String echo2(@RequestBody SimpleModel simpleModel) {
+
+        Set<ConstraintViolation<SimpleModel>> result = validator.validate(simpleModel);
+        for (ConstraintViolation<SimpleModel> r : result) {
+            System.out.println("错误消息: " + r.getMessage());
+        }
         return "echo";
     }
 
