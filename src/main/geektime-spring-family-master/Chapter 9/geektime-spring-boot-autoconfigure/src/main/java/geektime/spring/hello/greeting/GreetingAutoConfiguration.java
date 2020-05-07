@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConditionalOnClass(GreetingApplicationRunner.class)
+@ConditionalOnClass(GreetingApplicationRunner.class) //这个类存在才生效GreetingApplicationRunner
 public class GreetingAutoConfiguration {
     @Bean
-    @ConditionalOnMissingBean(GreetingApplicationRunner.class)
+    @ConditionalOnMissingBean(GreetingApplicationRunner.class) //不存在才生效
     @ConditionalOnProperty(name = "greeting.enabled", havingValue = "true", matchIfMissing = true)
     public GreetingApplicationRunner greetingApplicationRunner() {
         return new GreetingApplicationRunner();
