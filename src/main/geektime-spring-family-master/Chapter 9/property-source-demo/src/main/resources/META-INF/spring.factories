@@ -1,1 +1,2 @@
 org.springframework.boot.env.EnvironmentPostProcessor=geektime.spring.hello.YapfEnvironmentPostProcessor
+geektime.spring.hello.Test=geektime.spring.hello.PTest

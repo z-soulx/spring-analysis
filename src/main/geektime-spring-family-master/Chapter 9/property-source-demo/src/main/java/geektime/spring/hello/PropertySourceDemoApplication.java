@@ -7,6 +7,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import javax.annotation.Resource;
+
 @SpringBootApplication
 @Slf4j
 public class PropertySourceDemoApplication implements ApplicationRunner {
@@ -17,8 +19,10 @@ public class PropertySourceDemoApplication implements ApplicationRunner {
 		SpringApplication.run(PropertySourceDemoApplication.class, args);
 	}
 
+
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+
 		log.info("{}", greeting);
 	}
 }
